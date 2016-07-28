@@ -7,27 +7,53 @@ var React = require('react');
 var Router = require('react-router');
 var RegisterForm = require('./registerForm');
 var Link = Router.Link;
+var Input = require('./common/textInput');
 
 var loginForm = React.createClass({
-        render: function(){
+    getInitialState: function() {
+          return {
+            username: null
+            , password: null
+          };
+        }
+        , userChangeHandler: function(event) {
+            this.setState({username: event.target.value});
+        }
+
+        , passwordChangeHandler: function(event) {
+            this.setState({password: event.target.value});
+        }
+
+        , formSubmitHandler: function(event) {
+            event.preventDefault();
+            console.log(this.state);
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/v1/login/'
+                , type: 'POST'
+                , data: this.state
+            }).then(function(data) {
+                sessionStorage.setItem('authToken', data.token);
+                Router.HashLocation.push("login");
+              });
+        }
+        , render: function(){
             return (
 				<form>
-                    <div className="col-md-3 "></div>
-                    <div className="col-md-3 ">
-                    <img src={'images/telefon_login.png'} alt="login_telefon" className="img-responsive"/>
+                    <fieldset>
+                    <div className="col-md-6 col-md-offset-3 loginpage">
+                    <img src={'images/telefon_login.png'} alt="login_telefon" className="img-responsive loginimage"/>
+                    <div className="logintable col-md-6">
+                    <div className="jumbotron jumbologin">
+                    <img src={'images/logo.png'} alt="logo" className="img-responsive formimage"/>
+					<input type="text" placeholder="Username" onChange={this.userChangeHandler} /><br />
+					<input type="password" placeholder="Password" onChange={this.passwordChangeHandler} /><br />
+					<button name="submit" onClick={this.formSubmitHandler} > Login </button></div>
+                    <div className="jumbotron jumbologin">
+                    <h4>Don't have an account? <Link to = "register">Sign up</Link> </h4></div>
                     </div>
-                    <div className="col-md-6 text-left loginform">
-                    <img src={'images/logo.png'} alt="logo" className="img-responsive"/>
-					<input type="text" placeholder="Username"/>
-					<br />
-					<input type="password" placeholder="Password"/>
-					<br />
-					<input type="submit" value="Login"/>
-                    <h4>Don't have an account? <Link to = "register">Sign up</Link> </h4>
                     </div>
+                    </fieldset>
 				</form>
-
-
 
             );
         }

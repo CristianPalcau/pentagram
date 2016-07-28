@@ -32051,6 +32051,69 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 },{"react":196,"react-router":27}],200:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var Input = React.createClass({displayName: "Input",
+  propTypes: {
+    name: React.PropTypes.string.isRequired,
+    label: React.PropTypes.string.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    placeholder: React.PropTypes.string,
+    value: React.PropTypes.string,
+    error: React.PropTypes.string
+  },
+
+  render: function () {
+    var wrapperClass = 'form-group';
+    if (this.props.error && this.props.error.length > 0) {
+      wrapperClass += " " + 'has-error';
+    }
+    
+    return (
+     React.createElement("div", {className: wrapperClass}, 
+        React.createElement("label", {htmlFor: this.props.name}, this.props.label), 
+        React.createElement("div", {className: "field"}, 
+          React.createElement("input", {type: "text", 
+            name: this.props.name, 
+            className: "form-control", 
+            placeholder: this.props.placeholder, 
+            ref: this.props.name, 
+            value: this.props.value, 
+            onChange: this.props.onChange}), 
+          React.createElement("div", {className: "input"}, this.props.error)
+        )
+      )
+    );
+  }
+});
+
+module.exports = Input;
+
+},{"react":196}],201:[function(require,module,exports){
+/**
+ * Created by Cristian Palcau on 28.07.2016.
+ */
+"use strict";
+
+var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+
+var feed = React.createClass({displayName: "feed",
+	render: function() {
+        return (
+                React.createElement("div", {className: "jumbotron"}, 
+                    React.createElement("h1", null, "Fotografii")
+                )
+		);
+	}
+});
+
+module.exports = feed;
+
+},{"react":196,"react-router":27}],202:[function(require,module,exports){
 /**
  * Created by Cristian Palcau on 22.07.2016.
  */
@@ -32060,27 +32123,53 @@ var React = require('react');
 var Router = require('react-router');
 var RegisterForm = require('./registerForm');
 var Link = Router.Link;
+var Input = require('./common/textInput');
 
 var loginForm = React.createClass({displayName: "loginForm",
-        render: function(){
+    getInitialState: function() {
+          return {
+            username: null
+            , password: null
+          };
+        }
+        , userChangeHandler: function(event) {
+            this.setState({username: event.target.value});
+        }
+
+        , passwordChangeHandler: function(event) {
+            this.setState({password: event.target.value});
+        }
+
+        , formSubmitHandler: function(event) {
+            event.preventDefault();
+            console.log(this.state);
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/v1/login/'
+                , type: 'POST'
+                , data: this.state
+            }).then(function(data) {
+                sessionStorage.setItem('authToken', data.token);
+                Router.HashLocation.push("login");
+              });
+        }
+        , render: function(){
             return (
 				React.createElement("form", null, 
-                    React.createElement("div", {className: "col-md-3 "}), 
-                    React.createElement("div", {className: "col-md-3 "}, 
-                    React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", className: "img-responsive"})
-                    ), 
-                    React.createElement("div", {className: "col-md-6 text-left loginform"}, 
-                    React.createElement("img", {src: 'images/logo.png', alt: "logo", className: "img-responsive"}), 
-					React.createElement("input", {type: "text", placeholder: "Username"}), 
-					React.createElement("br", null), 
-					React.createElement("input", {type: "password", placeholder: "Password"}), 
-					React.createElement("br", null), 
-					React.createElement("input", {type: "submit", value: "Login"}), 
-                    React.createElement("h4", null, "Don't have an account? ", React.createElement(Link, {to: "register"}, "Sign up"), " ")
+                    React.createElement("fieldset", null, 
+                    React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
+                    React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", className: "img-responsive loginimage"}), 
+                    React.createElement("div", {className: "logintable col-md-6"}, 
+                    React.createElement("div", {className: "jumbotron jumbologin"}, 
+                    React.createElement("img", {src: 'images/logo.png', alt: "logo", className: "img-responsive formimage"}), 
+					React.createElement("input", {type: "text", placeholder: "Username", onChange: this.userChangeHandler}), React.createElement("br", null), 
+					React.createElement("input", {type: "password", placeholder: "Password", onChange: this.passwordChangeHandler}), React.createElement("br", null), 
+					React.createElement("button", {name: "submit", onClick: this.formSubmitHandler}, " Login ")), 
+                    React.createElement("div", {className: "jumbotron jumbologin"}, 
+                    React.createElement("h4", null, "Don't have an account? ", React.createElement(Link, {to: "register"}, "Sign up"), " "))
+                    )
+                    )
                     )
 				)
-
-
 
             );
         }
@@ -32088,7 +32177,7 @@ var loginForm = React.createClass({displayName: "loginForm",
 });
 
 module.exports = loginForm;
-},{"./registerForm":203,"react":196,"react-router":27}],201:[function(require,module,exports){
+},{"./common/textInput":200,"./registerForm":205,"react":196,"react-router":27}],203:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32107,7 +32196,7 @@ var loginPage = React.createClass({displayName: "loginPage",
 
 module.exports = loginPage;
 
-},{"./loginForm":200,"./registerForm":203,"react":196,"react-router":27}],202:[function(require,module,exports){
+},{"./loginForm":202,"./registerForm":205,"react":196,"react-router":27}],204:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32127,7 +32216,7 @@ var NotFoundPage = React.createClass({displayName: "NotFoundPage",
 
 module.exports = NotFoundPage;
 
-},{"react":196,"react-router":27}],203:[function(require,module,exports){
+},{"react":196,"react-router":27}],205:[function(require,module,exports){
 /**
  * Created by Cristian Palcau on 25.07.2016.
  */
@@ -32137,25 +32226,67 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var registerForm = React.createClass({displayName: "registerForm",
-        render: function(){
+        getInitialState: function() {
+          return {
+            username: null
+            , email: null
+            , password: null
+          };
+        }
+        , userChangeHandler: function(event) {
+            this.setState({username: event.target.value});
+        }
+        , emailChangeHandler: function(event) {
+            this.setState({email: event.target.value});
+        }
+
+        , passwordChangeHandler: function(event) {
+            this.setState({password: event.target.value});
+        }
+
+        , formSubmitHandler: function(event) {
+            event.preventDefault();
+            console.log(this.state);
+
+            //Router.HashLocation.push("login");
+        
+            $.ajax({
+                url: 'http://127.0.0.1:8000/api/v1/users/'
+                , type: 'POST'
+                , data: this.state
+                , error: function(response) {
+                    console.log(response.responseJSON);
+                }
+            }).then(function(data) {
+              sessionStorage.setItem('authToken', data.token);
+                console.log(data.token);
+                Router.HashLocation.push("login");
+              //redirect to homepage
+              //window.location.replace("http://stackoverflow.com");
+            });
+        }
+        , render: function(){
             return (
 				React.createElement("form", null, 
-                    React.createElement("div", {className: "col-md-3 "}), 
-                    React.createElement("div", {className: "col-md-3 "}, 
-                    React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", className: "img-responsive"})
+                    React.createElement("fieldset", null, 
+                    React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
+                    React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", className: "img-responsive loginimage"}), 
+                    React.createElement("div", {className: "logintable col-md-6"}, 
+                    React.createElement("div", {className: "jumbotron jumbologin"}, 
+                    React.createElement("img", {src: 'images/logo.png', alt: "logo", className: "img-responsive formimage"}), 
+                    React.createElement("h2", null, "Sign up to see photos and videos from your friends."), 
+					React.createElement("input", {type: "text", name: "username", placeholder: "Username", onChange: this.userChangeHandler}), 
+					React.createElement("br", null), 
+                    React.createElement("input", {type: "email", name: "email", placeholder: "Email", onChange: this.emailChangeHandler}), 
+					React.createElement("br", null), 
+					React.createElement("input", {type: "password", name: "password", placeholder: "Password", onChange: this.passwordChangeHandler}), 
+					React.createElement("br", null), 
+					React.createElement("button", {name: "submit", onClick: this.formSubmitHandler}, "Register")
                     ), 
-                    React.createElement("div", {className: "col-md-6 text-left loginform"}, 
-                    React.createElement("img", {src: 'images/logo.png', alt: "logo", className: "img-responsive"}), 
-                    React.createElement("h4", null, "Sign up to see photos and videos from your friends."), 
-					React.createElement("label", {htmlFor: "username"}), 
-					React.createElement("input", {type: "text", placeholder: "Username"}), 
-					React.createElement("br", null), 
-                    React.createElement("input", {type: "email", placeholder: "Email"}), 
-					React.createElement("br", null), 
-					React.createElement("input", {type: "password", placeholder: "Password"}), 
-					React.createElement("br", null), 
-					React.createElement("input", {type: "submit", value: "Register"}), 
-                    React.createElement("h4", null, "Have an account? ", React.createElement(Link, {to: "login"}, "Log in"))
+                    React.createElement("div", {className: "jumbotron jumbologin"}, 
+                    React.createElement("h4", null, "Have an account? ", React.createElement(Link, {to: "login"}, "Log in")))
+                    )
+                    )
                     )
 				)
             );
@@ -32164,7 +32295,7 @@ var registerForm = React.createClass({displayName: "registerForm",
 });
 
 module.exports = registerForm;
-},{"react":196,"react-router":27}],204:[function(require,module,exports){
+},{"react":196,"react-router":27}],206:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32174,7 +32305,7 @@ var routes = require('./routes');
 Router.run(routes, function(Handler) {
 	React.render(React.createElement(Handler, null), document.getElementById('app'));
 });
-},{"./routes":205,"react":196,"react-router":27}],205:[function(require,module,exports){
+},{"./routes":207,"react":196,"react-router":27}],207:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32191,6 +32322,7 @@ var routes = (
     React.createElement(Route, {name: "about", handler: require('./components/about/aboutPage')}), 
     React.createElement(Route, {name: "register", handler: require('./components/registerForm')}), 
     React.createElement(Route, {name: "login", handler: require('./components/loginForm')}), 
+    React.createElement(Route, {name: "feed", handler: require('./components/feed')}), 
     React.createElement(NotFoundRoute, {handler: require('./components/notFoundPage')}), 
     "// do the redirect if route fails", 
     React.createElement(Redirect, {from: "about-us", to: "about"}), 
@@ -32200,4 +32332,4 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/about/aboutPage":197,"./components/app":198,"./components/loginForm":200,"./components/loginPage":201,"./components/notFoundPage":202,"./components/registerForm":203,"react":196,"react-router":27}]},{},[204]);
+},{"./components/about/aboutPage":197,"./components/app":198,"./components/feed":201,"./components/loginForm":202,"./components/loginPage":203,"./components/notFoundPage":204,"./components/registerForm":205,"react":196,"react-router":27}]},{},[206]);
