@@ -1,6 +1,8 @@
 body {
     background-color: #fafafa;
     margin-top: 30px;
+    line-height: 1.5;
+    padding: 4em 1em;
     /*background-image:url('../src/images/logo.png');*/
     /*background-size:cover;*/
 }
@@ -50,6 +52,7 @@ h2 {
     line-height: 20px;
     margin: 0 40px 10px;
     text-align: center;
+    margin-top: 0.7em;
 }
 h4{
     color: #262626;
@@ -112,4 +115,63 @@ h4{
     border-radius: 1px;
     margin: 0 0 10px;
     padding: 10px 0;
+}
+.inputerror{
+    background-image: url('../images/error.png');
+    background-repeat: no-repeat;
+    height: 22px;
+    width: 22px;
+}
+
+label {
+ display: inline-block;
+ margin-left:10px;
+ width: 15px;
+ height: 15px;
+}
+label.error {
+ background-color: red;
+}
+label.valid {
+ background-color: blue;
+}
+.containerfeed{
+    padding-top: 60px;
+    flex-grow: 1;
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+}
+.containerpost{
+    background-color: #fff;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+.headpost{
+    height: 64px;
+    padding: 14px 20px;
+}
+.utilizatorfeed{
+    display: inline-block;
+    margin-right: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 5px;
+    margin-left: -5px;
+    border: 0;
+}
+a:visited{
+    color: #262626;
+}
+a:hover{
+
 }

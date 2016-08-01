@@ -7,6 +7,8 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var registerForm = React.createClass({
+
+
         getInitialState: function() {
           return {
             username: null
@@ -28,27 +30,27 @@ var registerForm = React.createClass({
         , formSubmitHandler: function(event) {
             event.preventDefault();
             console.log(this.state);
-
-            //Router.HashLocation.push("login");
-        
+            if (this.state.value.length.username > 2) {
+              return 'success';
+            } else if (this.state.email == null) {
+              return 'error';
+            } else if (this.state.password == null) {
+              return 'error';
+            } else if (this.state.password === this.state.passwordValid) {
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/v1/users/'
                 , type: 'POST'
                 , data: this.state
-                , error: function(response) {
-                    console.log(response.responseJSON);
-                }
             }).then(function(data) {
-              sessionStorage.setItem('authToken', data.token);
-                console.log(data.token);
-                Router.HashLocation.push("login");
-              //redirect to homepage
-              //window.location.replace("http://stackoverflow.com");
+                sessionStorage.setItem('authToken', data.token);
+                Router.HashLocation.push('homePage');
+                //redirect to homepage
             });
+        }
         }
         , render: function(){
             return (
-				<form>
+				<form id ="FormRegister">
                     <fieldset>
                     <div className="col-md-6 col-md-offset-3 loginpage">
                     <img src={'images/telefon_login.png'} alt="login_telefon" className="img-responsive loginimage"/>
@@ -56,7 +58,7 @@ var registerForm = React.createClass({
                     <div className="jumbotron jumbologin">
                     <img src={'images/logo.png'} alt="logo" className="img-responsive formimage"/>
                     <h2>Sign up to see photos and videos from your friends.</h2>
-					<input type="text" name="username" placeholder="Username" onChange={this.userChangeHandler} />
+					<input type="text" id="username" name="username" placeholder="Username" onChange={this.userChangeHandler} />
 					<br />
                     <input type="email" name="email" placeholder="Email" onChange={this.emailChangeHandler} />
 					<br />

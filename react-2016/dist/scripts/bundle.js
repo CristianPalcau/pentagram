@@ -32027,7 +32027,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":199,"jquery":2,"react":196,"react-router":27}],199:[function(require,module,exports){
+},{"./common/header":200,"jquery":2,"react":196,"react-router":27}],199:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32051,6 +32051,29 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 },{"react":196,"react-router":27}],200:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
+
+var Header = React.createClass({displayName: "Header",
+	render: function() {
+		return (
+        React.createElement("nav", {className: "navbar navbar-default"}, 
+          React.createElement("div", {className: "container-fluid"}, 
+              React.createElement("ul", {className: "nav navbar-nav"}, 
+                React.createElement("li", null, React.createElement(Link, {to: "app"}, "Home")), 
+                React.createElement("li", null, React.createElement(Link, {to: "about"}, "About"))
+              )
+          )
+        )
+		);
+	}
+});
+
+module.exports = Header;
+},{"react":196,"react-router":27}],201:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32091,29 +32114,65 @@ var Input = React.createClass({displayName: "Input",
 
 module.exports = Input;
 
-},{"react":196}],201:[function(require,module,exports){
+},{"react":196}],202:[function(require,module,exports){
 /**
  * Created by Cristian Palcau on 28.07.2016.
  */
 "use strict";
-
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
+var Header = require('./common/Header');
 
 var feed = React.createClass({displayName: "feed",
-	render: function() {
-        return (
-                React.createElement("div", {className: "jumbotron"}, 
-                    React.createElement("h1", null, "Fotografii")
-                )
-		);
-	}
+    getInitialState: function(){
+                return {
+                    images: [
+                        ['https://unsplash.it/400/400/?random', ['com1', 'com2', 'com3'], 10],
+                        ['https://unsplash.it/400/400/?gravity=center', ['com1', 'com2'], 5],
+                        ['https://unsplash.it/400/400/?gravity=east', [], 8],
+                        ['https://unsplash.it/400/400/?gravity=east', [], 8]
+                    ]
+                };
+    
+            }
+        , onCommentHandler: function(event) {
+            console.log('Comment button was pressed!');
+        }
+        , render: function() {
+            return (
+                React.createElement("div", {className: "containerfeed"}, 
+                        this.state.images.map(function (item, index) {
+                            return (
+                            React.createElement("div", {className: "containerpost col-md-6 image-frame"}, 
+                                React.createElement("header", {className: "headpost"}, 
+                                React.createElement("div", {className: "utilizatorfeed"}, 
+                                React.createElement("a", {class: "utilizator", title: "utilizator", href: "#/utilizator/"}, "Utilizator")
+                                )
+                                ), 
+                                React.createElement("img", {src: item[0], id: 'image-' + index, width: "100%", height: "100%"}), 
+                                React.createElement("div", {className: "footer-toolbar-image"}), 
+                                React.createElement("div", {className: "all-icons"}, 
+                                    React.createElement("div", {className: "comment-icon glyphicon glyphicon-comment"}), 
+                                    React.createElement("div", {className: "like-icon glyphicon glyphicon-thumbs-up"}, item[2])
+                                ), 
+                                React.createElement("div", {className: "well comment-panel"}, 
+                                    item[1].map(function (comment, indexCom) {
+                                    return (
+                                        React.createElement("div", {id: 'comment-' + index + '-' + indexCom}, comment)
+                                    );
+                                })
+                                )
+                            )
+                            );
+                        }), 
+                    React.createElement("button", {type: "button", className: "btn btn-primary btn-lg round-btn"}, "+")
+                ));
+        }
 });
-
 module.exports = feed;
 
-},{"react":196,"react-router":27}],202:[function(require,module,exports){
+},{"./common/Header":199,"react":196,"react-router":27}],203:[function(require,module,exports){
 /**
  * Created by Cristian Palcau on 22.07.2016.
  */
@@ -32177,7 +32236,7 @@ var loginForm = React.createClass({displayName: "loginForm",
 });
 
 module.exports = loginForm;
-},{"./common/textInput":200,"./registerForm":205,"react":196,"react-router":27}],203:[function(require,module,exports){
+},{"./common/textInput":201,"./registerForm":206,"react":196,"react-router":27}],204:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32196,7 +32255,7 @@ var loginPage = React.createClass({displayName: "loginPage",
 
 module.exports = loginPage;
 
-},{"./loginForm":202,"./registerForm":205,"react":196,"react-router":27}],204:[function(require,module,exports){
+},{"./loginForm":203,"./registerForm":206,"react":196,"react-router":27}],205:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32216,7 +32275,7 @@ var NotFoundPage = React.createClass({displayName: "NotFoundPage",
 
 module.exports = NotFoundPage;
 
-},{"react":196,"react-router":27}],205:[function(require,module,exports){
+},{"react":196,"react-router":27}],206:[function(require,module,exports){
 /**
  * Created by Cristian Palcau on 25.07.2016.
  */
@@ -32226,6 +32285,8 @@ var Router = require('react-router');
 var Link = Router.Link;
 
 var registerForm = React.createClass({displayName: "registerForm",
+
+
         getInitialState: function() {
           return {
             username: null
@@ -32247,27 +32308,27 @@ var registerForm = React.createClass({displayName: "registerForm",
         , formSubmitHandler: function(event) {
             event.preventDefault();
             console.log(this.state);
-
-            //Router.HashLocation.push("login");
-        
+            if (this.state.value.length.username > 2) {
+              return 'success';
+            } else if (this.state.email == null) {
+              return 'error';
+            } else if (this.state.password == null) {
+              return 'error';
+            } else if (this.state.password === this.state.passwordValid) {
             $.ajax({
                 url: 'http://127.0.0.1:8000/api/v1/users/'
                 , type: 'POST'
                 , data: this.state
-                , error: function(response) {
-                    console.log(response.responseJSON);
-                }
             }).then(function(data) {
-              sessionStorage.setItem('authToken', data.token);
-                console.log(data.token);
-                Router.HashLocation.push("login");
-              //redirect to homepage
-              //window.location.replace("http://stackoverflow.com");
+                sessionStorage.setItem('authToken', data.token);
+                Router.HashLocation.push('homePage');
+                //redirect to homepage
             });
+        }
         }
         , render: function(){
             return (
-				React.createElement("form", null, 
+				React.createElement("form", {id: "FormRegister"}, 
                     React.createElement("fieldset", null, 
                     React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
                     React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", className: "img-responsive loginimage"}), 
@@ -32275,7 +32336,7 @@ var registerForm = React.createClass({displayName: "registerForm",
                     React.createElement("div", {className: "jumbotron jumbologin"}, 
                     React.createElement("img", {src: 'images/logo.png', alt: "logo", className: "img-responsive formimage"}), 
                     React.createElement("h2", null, "Sign up to see photos and videos from your friends."), 
-					React.createElement("input", {type: "text", name: "username", placeholder: "Username", onChange: this.userChangeHandler}), 
+					React.createElement("input", {type: "text", id: "username", name: "username", placeholder: "Username", onChange: this.userChangeHandler}), 
 					React.createElement("br", null), 
                     React.createElement("input", {type: "email", name: "email", placeholder: "Email", onChange: this.emailChangeHandler}), 
 					React.createElement("br", null), 
@@ -32295,7 +32356,7 @@ var registerForm = React.createClass({displayName: "registerForm",
 });
 
 module.exports = registerForm;
-},{"react":196,"react-router":27}],206:[function(require,module,exports){
+},{"react":196,"react-router":27}],207:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32305,7 +32366,7 @@ var routes = require('./routes');
 Router.run(routes, function(Handler) {
 	React.render(React.createElement(Handler, null), document.getElementById('app'));
 });
-},{"./routes":207,"react":196,"react-router":27}],207:[function(require,module,exports){
+},{"./routes":208,"react":196,"react-router":27}],208:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32332,4 +32393,4 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/about/aboutPage":197,"./components/app":198,"./components/feed":201,"./components/loginForm":202,"./components/loginPage":203,"./components/notFoundPage":204,"./components/registerForm":205,"react":196,"react-router":27}]},{},[206]);
+},{"./components/about/aboutPage":197,"./components/app":198,"./components/feed":202,"./components/loginForm":203,"./components/loginPage":204,"./components/notFoundPage":205,"./components/registerForm":206,"react":196,"react-router":27}]},{},[207]);
