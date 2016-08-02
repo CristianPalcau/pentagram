@@ -10,6 +10,7 @@ var Link = Router.Link;
 //TODO:
 //1. get user Name using user_id, to show on comments
 //2. remember somewhere logged user to can add comments and likes.
+//3. add submit button in header, style header, remove comments page
 
 var feed = React.createClass({
 	getInitialState: function(){

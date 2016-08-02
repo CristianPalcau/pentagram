@@ -31,9 +31,15 @@ var loginForm = React.createClass({
                 url: 'http://127.0.0.1:8000/api/v1/login/'
                 , type: 'POST'
                 , data: this.state
+                , error: function (xhr, textStatus, errorThrown) {
+                    var json = JSON.parse(xhr.responseText);
+                    for(var prop in json) {
+                        alert(prop + "  " + json[prop]);
+                    }
+                }
             }).then(function(data) {
                 sessionStorage.setItem('authToken', data.token);
-                Router.HashLocation.push("login");
+                Router.HashLocation.push("feed");
               });
         }
         , render: function(){
