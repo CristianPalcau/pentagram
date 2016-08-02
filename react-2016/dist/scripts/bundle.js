@@ -32037,13 +32037,13 @@ var Link = Router.Link;
 var Header = React.createClass({displayName: "Header",
 	render: function() {
 		return (
-        React.createElement("nav", {className: "navbar navbar-default"}, 
-          React.createElement("div", {className: "container-fluid"}, 
-              React.createElement("ul", {className: "nav navbar-nav"}, 
-                React.createElement("li", null, React.createElement(Link, {to: "app"}, "Home")), 
-                React.createElement("li", null, React.createElement(Link, {to: "about"}, "About"))
+        React.createElement("nav", {className: "containerheader"}, 
+            React.createElement("div", {className: "headercontent"}, 
+              React.createElement("a", {className: "logofeed", href: "/#/feed"}, "Pentagram"), 
+              React.createElement("div", {className: "butoanenavigare"}, 
+                React.createElement("a", {className: "butonprofil", href: "/#/feed"}, "Profile")
               )
-          )
+              )
         )
 		);
 	}
@@ -32060,13 +32060,13 @@ var Link = Router.Link;
 var Header = React.createClass({displayName: "Header",
 	render: function() {
 		return (
-        React.createElement("nav", {className: "navbar navbar-default"}, 
-          React.createElement("div", {className: "container-fluid"}, 
-              React.createElement("ul", {className: "nav navbar-nav"}, 
-                React.createElement("li", null, React.createElement(Link, {to: "app"}, "Home")), 
-                React.createElement("li", null, React.createElement(Link, {to: "about"}, "About"))
+        React.createElement("nav", {className: "containerheader"}, 
+            React.createElement("div", {className: "headercontent"}, 
+              React.createElement("a", {className: "logofeed", href: "/#/feed"}, "Pentagram"), 
+              React.createElement("div", {className: "butoanenavigare"}, 
+                React.createElement("a", {className: "butonprofil", href: "/#/feed"}, "Profile")
               )
-          )
+              )
         )
 		);
 	}
@@ -32125,50 +32125,56 @@ var Link = Router.Link;
 var Header = require('./common/Header');
 
 var feed = React.createClass({displayName: "feed",
-    getInitialState: function(){
-                return {
-                    images: [
-                        ['https://unsplash.it/400/400/?random', ['com1', 'com2', 'com3'], 10],
-                        ['https://unsplash.it/400/400/?gravity=center', ['com1', 'com2'], 5],
-                        ['https://unsplash.it/400/400/?gravity=east', [], 8],
-                        ['https://unsplash.it/400/400/?gravity=east', [], 8]
-                    ]
-                };
-    
-            }
-        , onCommentHandler: function(event) {
-            console.log('Comment button was pressed!');
-        }
-        , render: function() {
-            return (
+    getInitialState: function () {
+        return {
+            images: [
+                ['https://unsplash.it/400/400/?random', ['com1', 'com2', 'com3'], 10],
+                ['https://unsplash.it/400/400/?gravity=center', ['com1', 'com2'], 5],
+                ['https://unsplash.it/400/400/?gravity=east', [], 8],
+                ['https://unsplash.it/400/400/?gravity=east', [], 8]
+            ]
+        };
+
+    }
+    , onCommentHandler: function (event) {
+        console.log('Comment button was pressed!');
+    }
+    , render: function () {
+        return (
+            React.createElement("div", null, 
+                React.createElement(Header, null), 
                 React.createElement("div", {className: "containerfeed"}, 
-                        this.state.images.map(function (item, index) {
-                            return (
+                    this.state.images.map(function (item, index) {
+                        return (
                             React.createElement("div", {className: "containerpost col-md-6 image-frame"}, 
                                 React.createElement("header", {className: "headpost"}, 
-                                React.createElement("div", {className: "utilizatorfeed"}, 
-                                React.createElement("a", {class: "utilizator", title: "utilizator", href: "#/utilizator/"}, "Utilizator")
-                                )
+                                    React.createElement("div", {className: "utilizatorfeed"}, 
+                                        React.createElement("a", {class: "utilizator", title: "utilizator", href: "#/utilizator/"}, "Utilizator")
+                                    )
                                 ), 
                                 React.createElement("img", {src: item[0], id: 'image-' + index, width: "100%", height: "100%"}), 
                                 React.createElement("div", {className: "footer-toolbar-image"}), 
-                                React.createElement("div", {className: "all-icons"}, 
-                                    React.createElement("div", {className: "comment-icon glyphicon glyphicon-comment"}), 
-                                    React.createElement("div", {className: "like-icon glyphicon glyphicon-thumbs-up"}, item[2])
-                                ), 
-                                React.createElement("div", {className: "well comment-panel"}, 
-                                    item[1].map(function (comment, indexCom) {
-                                    return (
-                                        React.createElement("div", {id: 'comment-' + index + '-' + indexCom}, comment)
-                                    );
-                                })
+                                React.createElement("div", {className: "subcontainer"}, 
+                                    React.createElement("div", {className: "all-icons"}, 
+                                        React.createElement("div", {className: "comment-icon glyphicon glyphicon-comment"}), 
+                                        React.createElement("div", {className: "like-icon glyphicon glyphicon-thumbs-up"}, item[2])
+                                    ), 
+                                    React.createElement("div", {className: "comment-panel"}, 
+                                        item[1].map(function (comment, indexCom) {
+                                            return (
+                                                React.createElement("div", {id: 'comment-' + index + '-' + indexCom}, comment)
+                                            );
+                                        })
+                                    )
                                 )
                             )
-                            );
-                        }), 
+                        );
+                    }), 
                     React.createElement("button", {type: "button", className: "btn btn-primary btn-lg round-btn"}, "+")
-                ));
-        }
+                )
+            )
+        );
+    }
 });
 module.exports = feed;
 
@@ -32213,6 +32219,7 @@ var loginForm = React.createClass({displayName: "loginForm",
         }
         , render: function(){
             return (
+                React.createElement("div", {className: "containerlogin"}, 
 				React.createElement("form", null, 
                     React.createElement("fieldset", null, 
                     React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
@@ -32229,7 +32236,7 @@ var loginForm = React.createClass({displayName: "loginForm",
                     )
                     )
 				)
-
+                )
             );
         }
 
@@ -32328,6 +32335,7 @@ var registerForm = React.createClass({displayName: "registerForm",
         }
         , render: function(){
             return (
+                React.createElement("div", {className: "containerlogin"}, 
 				React.createElement("form", {id: "FormRegister"}, 
                     React.createElement("fieldset", null, 
                     React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
@@ -32350,6 +32358,7 @@ var registerForm = React.createClass({displayName: "registerForm",
                     )
                     )
 				)
+                )
             );
         }
 
@@ -32357,6 +32366,10 @@ var registerForm = React.createClass({displayName: "registerForm",
 
 module.exports = registerForm;
 },{"react":196,"react-router":27}],207:[function(require,module,exports){
+/**
+ * Created by Cristian Palcau on 02.08.2016.
+ */
+},{}],208:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32366,7 +32379,7 @@ var routes = require('./routes');
 Router.run(routes, function(Handler) {
 	React.render(React.createElement(Handler, null), document.getElementById('app'));
 });
-},{"./routes":208,"react":196,"react-router":27}],208:[function(require,module,exports){
+},{"./routes":209,"react":196,"react-router":27}],209:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -32384,6 +32397,7 @@ var routes = (
     React.createElement(Route, {name: "register", handler: require('./components/registerForm')}), 
     React.createElement(Route, {name: "login", handler: require('./components/loginForm')}), 
     React.createElement(Route, {name: "feed", handler: require('./components/feed')}), 
+    React.createElement(Route, {name: "photo/:photo_id", handler: require('./components/singlePhoto')}), 
     React.createElement(NotFoundRoute, {handler: require('./components/notFoundPage')}), 
     "// do the redirect if route fails", 
     React.createElement(Redirect, {from: "about-us", to: "about"}), 
@@ -32393,4 +32407,4 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/about/aboutPage":197,"./components/app":198,"./components/feed":202,"./components/loginForm":203,"./components/loginPage":204,"./components/notFoundPage":205,"./components/registerForm":206,"react":196,"react-router":27}]},{},[207]);
+},{"./components/about/aboutPage":197,"./components/app":198,"./components/feed":202,"./components/loginForm":203,"./components/loginPage":204,"./components/notFoundPage":205,"./components/registerForm":206,"./components/singlePhoto":207,"react":196,"react-router":27}]},{},[208]);

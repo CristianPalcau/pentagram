@@ -38,6 +38,7 @@ var loginForm = React.createClass({
         }
         , render: function(){
             return (
+                <div className="containerlogin">
 				<form>
                     <fieldset>
                     <div className="col-md-6 col-md-offset-3 loginpage">
@@ -54,7 +55,7 @@ var loginForm = React.createClass({
                     </div>
                     </fieldset>
 				</form>
-
+                </div>
             );
         }
 

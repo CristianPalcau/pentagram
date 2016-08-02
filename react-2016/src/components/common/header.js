@@ -7,13 +7,13 @@ var Link = Router.Link;
 var Header = React.createClass({
 	render: function() {
 		return (
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-              <ul className="nav navbar-nav">
-                <li><Link to="app">Home</Link></li>
-                <li><Link to="about">About</Link></li>
-              </ul>
-          </div>
+        <nav className="containerheader">
+            <div className="headercontent">
+              <a className="logofeed" href="/#/feed">Pentagram</a>
+              <div className="butoanenavigare">
+                <a className="butonprofil" href="/#/feed">Profile</a>
+              </div>
+              </div>
         </nav>
 		);
 	}
