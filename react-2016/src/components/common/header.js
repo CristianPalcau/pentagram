@@ -9,9 +9,10 @@ var Header = React.createClass({
 		return (
         <nav className="containerheader">
             <div className="headercontent">
-              <a className="logofeed" href="/#/feed">Pentagram</a>
+              <a className="logofeed" href="#/feed">Pentagram</a>
               <div className="butoanenavigare">
-                <a className="butonprofil" href="/#/feed">Profile</a>
+                <a className="butonadd" href="#/feed">Add</a>
+                <a className="butonprofil" href="#/profil">Profile</a>
               </div>
               </div>
         </nav>

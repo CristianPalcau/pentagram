@@ -32039,9 +32039,10 @@ var Header = React.createClass({displayName: "Header",
 		return (
         React.createElement("nav", {className: "containerheader"}, 
             React.createElement("div", {className: "headercontent"}, 
-              React.createElement("a", {className: "logofeed", href: "/#/feed"}, "Pentagram"), 
+              React.createElement("a", {className: "logofeed", href: "#/feed"}, "Pentagram"), 
               React.createElement("div", {className: "butoanenavigare"}, 
-                React.createElement("a", {className: "butonprofil", href: "/#/feed"}, "Profile")
+                React.createElement("a", {className: "butonadd", href: "#/feed"}, "Add"), 
+                React.createElement("a", {className: "butonprofil", href: "#/profil"}, "Profile")
               )
               )
         )
@@ -32062,9 +32063,10 @@ var Header = React.createClass({displayName: "Header",
 		return (
         React.createElement("nav", {className: "containerheader"}, 
             React.createElement("div", {className: "headercontent"}, 
-              React.createElement("a", {className: "logofeed", href: "/#/feed"}, "Pentagram"), 
+              React.createElement("a", {className: "logofeed", href: "#/feed"}, "Pentagram"), 
               React.createElement("div", {className: "butoanenavigare"}, 
-                React.createElement("a", {className: "butonprofil", href: "/#/feed"}, "Profile")
+                React.createElement("a", {className: "butonadd", href: "#/feed"}, "Add"), 
+                React.createElement("a", {className: "butonprofil", href: "#/profil"}, "Profile")
               )
               )
         )
@@ -32156,8 +32158,27 @@ var feed = React.createClass({displayName: "feed",
         Router.HashLocation.push('photo/' + photoID);
         // console.log('Comment button was pressed!');
     }
+
+    , likebutton: function(event) {
+        $('.like').click(function () {
+            var obj = $(this);
+            if (obj.data('liked')) {
+                obj.data('liked', false);
+                obj.html('<span class="likes coreSpriteHeartOpen">Like</span>');
+
+            }
+            else {
+                obj.data('liked', true);
+                obj.html('<span class="likes coreSpriteHeartFull">Unlike</span>');
+            }
+        });
+    }
     , render: function () {
         var self = this;
+        var tokenNumber = sessionStorage.getItem("authToken");
+        if (!tokenNumber) {
+            Router.HashLocation.push("login");
+        }
         return (
             React.createElement("div", null, 
                 React.createElement(Header, null), 
@@ -32172,22 +32193,30 @@ var feed = React.createClass({displayName: "feed",
                                 ), 
 
                                 React.createElement("a", {href: '#/photo/' + item.id}, 
-                                React.createElement("img", {src: 'http://127.0.0.1:8000' + item.photo, id: 'image-' + item.id, "data-id": item.id, width: "100%", height: "100%"})
+                                    React.createElement("img", {src: 'http://127.0.0.1:8000' + item.photo, id: 'image-' + item.id, 
+                                         "data-id": item.id, width: "100%", height: "100%"})
                                 ), 
-                                React.createElement("div", {className: "footer-toolbar-image"}), 
-                                React.createElement("div", {className: "subcontainer"}, 
-                                    React.createElement("div", {className: "all-icons"}, 
-                                        React.createElement("div", {className: "comment-icon glyphicon glyphicon-comment"}), 
-                                        React.createElement("div", {className: "like-icon glyphicon glyphicon-thumbs-up"}, item[2])
+                                React.createElement("div", {className: "container-footer-post"}, 
+                                    React.createElement("section", {className: "container-like"}, 
+                                            React.createElement("span", {className: "like"}, 
+                                            React.createElement("span", null, item[2], " 491 "), "likes")
                                     ), 
-                                    React.createElement("div", {className: "comment-panel"}
-
+                                    React.createElement("ul", {className: "container-comments"}, 
+                                        React.createElement("li", {className: "comments"}, React.createElement("h1", null, React.createElement("a", {className: "user_comment notranslate", 
+                                                                        title: "cristian", 
+                                                                        href: "/cristian/"}, "cristian"), React.createElement("span", null, "Descriere. Testare. Coming soon...")
+                                        )), 
+                                        React.createElement("section", {className: "comments-post"}, 
+                                            React.createElement("a", {className: "like", role: "button", "aria-disabled": "false"}, React.createElement("span", {className: "likes coreSpriteHeartOpen", onClick: self.likebutton}, "Like")), 
+                                            React.createElement("form", {className: "add-comment"}, 
+                                                React.createElement("input", {type: "text", className: "comment-input", "aria-label": "Add a comment…", placeholder: "Add a comment…"})
+                                            )
+                                        )
                                     )
                                 )
                             )
                         );
-                    }), 
-                    React.createElement("button", {type: "button", className: "btn btn-primary btn-lg round-btn"}, "+")
+                    })
                 )
             )
         );
@@ -32242,23 +32271,32 @@ var loginForm = React.createClass({displayName: "loginForm",
         }
         , render: function(){
             return (
-                React.createElement("div", {className: "containerlogin"}, 
-				React.createElement("form", null, 
-                    React.createElement("fieldset", null, 
-                    React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
-                    React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", className: "img-responsive loginimage"}), 
-                    React.createElement("div", {className: "logintable col-md-6"}, 
-                    React.createElement("div", {className: "jumbotron jumbologin"}, 
-                    React.createElement("img", {src: 'images/logo.png', alt: "logo", className: "img-responsive formimage"}), 
-					React.createElement("input", {type: "text", placeholder: "Username", onChange: this.userChangeHandler}), React.createElement("br", null), 
-					React.createElement("input", {type: "password", placeholder: "Password", onChange: this.passwordChangeHandler}), React.createElement("br", null), 
-					React.createElement("button", {name: "submit", onClick: this.formSubmitHandler}, " Login ")), 
-                    React.createElement("div", {className: "jumbotron jumbologin"}, 
-                    React.createElement("h4", null, "Don't have an account? ", React.createElement(Link, {to: "register"}, "Sign up"), " "))
+                React.createElement("main", {className: "mainclass", role: "main"}, 
+                    React.createElement("article", {className: "container_main"}, 
+                    React.createElement("div", {className: "containerlogin"}, 
+                        React.createElement("form", null, 
+                            React.createElement("fieldset", null, 
+                                React.createElement("div", {className: "col-md-6 col-md-offset-3 loginpage"}, 
+                                    React.createElement("img", {src: 'images/telefon_login.png', alt: "login_telefon", 
+                                         className: "img-responsive loginimage formimage_display"}), 
+                                    React.createElement("div", {className: "logintable col-md-6"}, 
+                                        React.createElement("div", {className: "jumbotron jumbologin"}, 
+                                            React.createElement("img", {src: 'images/logo.png', alt: "logo", 
+                                                 className: "img-responsive formimage"}), 
+                                            React.createElement("input", {type: "text", placeholder: "Username", 
+                                                   onChange: this.userChangeHandler}), React.createElement("br", null), 
+                                            React.createElement("input", {type: "password", placeholder: "Password", 
+                                                   onChange: this.passwordChangeHandler}), React.createElement("br", null), 
+                                            React.createElement("button", {name: "submit", onClick: this.formSubmitHandler}, " Login")
+                                        ), 
+                                        React.createElement("div", {className: "jumbotron jumbologin"}, 
+                                            React.createElement("h4", null, "Don't have an account? ", React.createElement(Link, {to: "register"}, "Sign up")))
+                                    )
+                                )
+                            )
+                        )
                     )
                     )
-                    )
-				)
                 )
             );
         }
@@ -32401,6 +32439,9 @@ var Link = Router.Link;
 //TODO:
 //1. get user Name using user_id, to show on comments
 //2. remember somewhere logged user to can add comments and likes.
+//3. add submit button in header, style header, remove comments page
+//4. Responsive login/register page
+// <span className="like coreSpriteHeartFull">Unlike</span>
 
 var feed = React.createClass({displayName: "feed",
 	getInitialState: function(){

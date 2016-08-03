@@ -44,24 +44,33 @@ var loginForm = React.createClass({
         }
         , render: function(){
             return (
-                <div className="containerlogin">
-				<form>
-                    <fieldset>
-                    <div className="col-md-6 col-md-offset-3 loginpage">
-                    <img src={'images/telefon_login.png'} alt="login_telefon" className="img-responsive loginimage"/>
-                    <div className="logintable col-md-6">
-                    <div className="jumbotron jumbologin">
-                    <img src={'images/logo.png'} alt="logo" className="img-responsive formimage"/>
-					<input type="text" placeholder="Username" onChange={this.userChangeHandler} /><br />
-					<input type="password" placeholder="Password" onChange={this.passwordChangeHandler} /><br />
-					<button name="submit" onClick={this.formSubmitHandler} > Login </button></div>
-                    <div className="jumbotron jumbologin">
-                    <h4>Don't have an account? <Link to = "register">Sign up</Link> </h4></div>
+                <main className="mainclass" role="main">
+                    <article className="container_main">
+                    <div className="containerlogin">
+                        <form>
+                            <fieldset>
+                                <div className="col-md-6 col-md-offset-3 loginpage">
+                                    <img src={'images/telefon_login.png'} alt="login_telefon"
+                                         className="img-responsive loginimage formimage_display"/>
+                                    <div className="logintable col-md-6">
+                                        <div className="jumbotron jumbologin">
+                                            <img src={'images/logo.png'} alt="logo"
+                                                 className="img-responsive formimage"/>
+                                            <input type="text" placeholder="Username"
+                                                   onChange={this.userChangeHandler}/><br />
+                                            <input type="password" placeholder="Password"
+                                                   onChange={this.passwordChangeHandler}/><br />
+                                            <button name="submit" onClick={this.formSubmitHandler}> Login</button>
+                                        </div>
+                                        <div className="jumbotron jumbologin">
+                                            <h4>Don't have an account? <Link to="register">Sign up</Link></h4></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
-                    </div>
-                    </fieldset>
-				</form>
-                </div>
+                    </article>
+                </main>
             );
         }
 
