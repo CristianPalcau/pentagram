@@ -21,6 +21,7 @@ var routes = (
     <Redirect from="about-us" to="about" />
     <Redirect from="about/*" to="about" />
   </Route>
+
 );
 
 module.exports = routes;

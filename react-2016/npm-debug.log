@@ -1,25 +1,431 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'start' ]
+1 verbose cli   'install',
+1 verbose cli   'cors' ]
 2 info using npm@2.15.8
 3 info using node@v4.4.7
-4 verbose stack Error: missing script: start
-4 verbose stack     at run (C:\Program Files\nodejs\node_modules\npm\lib\run-script.js:142:19)
-4 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\run-script.js:58:5
-4 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:356:5
-4 verbose stack     at checkBinReferences_ (C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:320:45)
-4 verbose stack     at final (C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:354:3)
-4 verbose stack     at then (C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:124:5)
-4 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-package-json\read-json.js:311:12
-4 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\graceful-fs.js:78:16
-4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
-5 verbose cwd D:\Pentalog\react-2016
-6 error Windows_NT 10.0.10586
-7 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
-8 error node v4.4.7
-9 error npm  v2.15.8
-10 error missing script: start
-11 error If you need help, you may report this error at:
-11 error     <https://github.com/npm/npm/issues>
-12 verbose exit [ 1, true ]
+4 verbose install initial load of D:\Pentalog\react-2016\package.json
+5 warn package.json psadmin@1.0.0 No description
+6 warn package.json psadmin@1.0.0 No README data
+7 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\bootstrap\package.json
+8 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\browserify\package.json
+9 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\flux\package.json
+10 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\galleria.js\package.json
+11 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\gulp\package.json
+12 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\gulp-concat\package.json
+13 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\gulp-connect\package.json
+14 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\gulp-eslint\package.json
+15 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\gulp-open\package.json
+16 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\image-gallery\package.json
+17 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\jquery\package.json
+18 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\lodash\package.json
+19 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\material-photo-gallery\package.json
+20 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\react\package.json
+21 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\react-dom\package.json
+22 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\react-photo-gallery\package.json
+23 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\react-router\package.json
+24 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\reactify\package.json
+25 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\toastr\package.json
+26 verbose installManyTop reading scoped package data from D:\Pentalog\react-2016\node_modules\vinyl-source-stream\package.json
+27 info package.json gulp-eslint@0.15.0 No license field.
+28 info package.json jquery@2.1.4 No license field.
+29 info package.json flux@2.0.3 license should be a valid SPDX license expression
+30 info package.json toastr@2.1.0 No license field.
+31 info package.json material-photo-gallery@0.1.1 No repository field.
+32 info package.json material-photo-gallery@0.1.1 dev-dependencies should probably be devDependencies.
+33 verbose readDependencies loading dependencies from D:\Pentalog\react-2016\package.json
+34 verbose readDependencies npm-shrinkwrap.json is overriding dependencies
+35 info shrinkwrap file "D:\\Pentalog\\react-2016\\npm-shrinkwrap.json"
+36 verbose readDependencies returned deps { bootstrap: 'https://registry.npmjs.org/bootstrap/-/bootstrap-3.3.5.tgz',
+36 verbose readDependencies returned deps   browserify: 'https://registry.npmjs.org/browserify/-/browserify-11.0.1.tgz',
+36 verbose readDependencies returned deps   flux: 'https://registry.npmjs.org/flux/-/flux-2.0.3.tgz',
+36 verbose readDependencies returned deps   gulp: 'https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz',
+36 verbose readDependencies returned deps   'gulp-concat': 'https://registry.npmjs.org/gulp-concat/-/gulp-concat-2.6.0.tgz',
+36 verbose readDependencies returned deps   'gulp-connect': 'https://registry.npmjs.org/gulp-connect/-/gulp-connect-2.2.0.tgz',
+36 verbose readDependencies returned deps   'gulp-eslint': 'https://registry.npmjs.org/gulp-eslint/-/gulp-eslint-0.15.0.tgz',
+36 verbose readDependencies returned deps   'gulp-open': 'https://registry.npmjs.org/gulp-open/-/gulp-open-1.0.0.tgz',
+36 verbose readDependencies returned deps   jquery: 'https://registry.npmjs.org/jquery/-/jquery-2.1.4.tgz',
+36 verbose readDependencies returned deps   lodash: 'https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz',
+36 verbose readDependencies returned deps   react: 'https://registry.npmjs.org/react/-/react-0.13.3.tgz',
+36 verbose readDependencies returned deps   'react-router': 'https://registry.npmjs.org/react-router/-/react-router-0.13.3.tgz',
+36 verbose readDependencies returned deps   reactify: 'https://registry.npmjs.org/reactify/-/reactify-1.1.1.tgz',
+36 verbose readDependencies returned deps   toastr: 'https://registry.npmjs.org/toastr/-/toastr-2.1.0.tgz',
+36 verbose readDependencies returned deps   'vinyl-source-stream': 'https://registry.npmjs.org/vinyl-source-stream/-/vinyl-source-stream-1.1.0.tgz' }
+37 silly cache add args [ 'cors', null ]
+38 verbose cache add spec cors
+39 silly cache add parsed spec Result {
+39 silly cache add   raw: 'cors',
+39 silly cache add   scope: null,
+39 silly cache add   name: 'cors',
+39 silly cache add   rawSpec: '',
+39 silly cache add   spec: 'latest',
+39 silly cache add   type: 'tag' }
+40 silly addNamed cors@latest
+41 verbose addNamed "latest" is being treated as a dist-tag for cors
+42 info addNameTag [ 'cors', 'latest' ]
+43 silly mapToRegistry name cors
+44 silly mapToRegistry using default registry
+45 silly mapToRegistry registry https://registry.npmjs.org/
+46 silly mapToRegistry data Result {
+46 silly mapToRegistry   raw: 'cors',
+46 silly mapToRegistry   scope: null,
+46 silly mapToRegistry   name: 'cors',
+46 silly mapToRegistry   rawSpec: '',
+46 silly mapToRegistry   spec: 'latest',
+46 silly mapToRegistry   type: 'tag' }
+47 silly mapToRegistry uri https://registry.npmjs.org/cors
+48 verbose addNameTag registry:https://registry.npmjs.org/cors not in flight; fetching
+49 verbose request uri https://registry.npmjs.org/cors
+50 verbose request no auth needed
+51 info attempt registry request try #1 at 13:47:12
+52 verbose request id d0d33cb822289e50
+53 http request GET https://registry.npmjs.org/cors
+54 http 200 https://registry.npmjs.org/cors
+55 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+55 verbose headers   etag: '"DI42DPAA85P6LRF8GE2X3N2DP"',
+55 verbose headers   'content-type': 'application/json',
+55 verbose headers   'content-encoding': 'gzip',
+55 verbose headers   'cache-control': 'max-age=300',
+55 verbose headers   'content-length': '7373',
+55 verbose headers   'accept-ranges': 'bytes',
+55 verbose headers   date: 'Wed, 03 Aug 2016 10:47:14 GMT',
+55 verbose headers   via: '1.1 varnish',
+55 verbose headers   age: '0',
+55 verbose headers   connection: 'keep-alive',
+55 verbose headers   'x-served-by': 'cache-lhr6321-LHR',
+55 verbose headers   'x-cache': 'HIT',
+55 verbose headers   'x-cache-hits': '1',
+55 verbose headers   'x-timer': 'S1470221234.205187,VS0,VE86',
+55 verbose headers   vary: 'Accept-Encoding' }
+56 silly get cb [ 200,
+56 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+56 silly get     etag: '"DI42DPAA85P6LRF8GE2X3N2DP"',
+56 silly get     'content-type': 'application/json',
+56 silly get     'content-encoding': 'gzip',
+56 silly get     'cache-control': 'max-age=300',
+56 silly get     'content-length': '7373',
+56 silly get     'accept-ranges': 'bytes',
+56 silly get     date: 'Wed, 03 Aug 2016 10:47:14 GMT',
+56 silly get     via: '1.1 varnish',
+56 silly get     age: '0',
+56 silly get     connection: 'keep-alive',
+56 silly get     'x-served-by': 'cache-lhr6321-LHR',
+56 silly get     'x-cache': 'HIT',
+56 silly get     'x-cache-hits': '1',
+56 silly get     'x-timer': 'S1470221234.205187,VS0,VE86',
+56 silly get     vary: 'Accept-Encoding' } ]
+57 verbose get saving cors to C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\registry.npmjs.org\cors\.cache.json
+58 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+59 silly addNameTag next cb for cors with tag latest
+60 silly addNamed cors@2.7.1
+61 verbose addNamed "2.7.1" is a plain semver version for cors
+62 silly mapToRegistry name cors
+63 silly mapToRegistry using default registry
+64 silly mapToRegistry registry https://registry.npmjs.org/
+65 silly mapToRegistry data Result {
+65 silly mapToRegistry   raw: 'cors',
+65 silly mapToRegistry   scope: null,
+65 silly mapToRegistry   name: 'cors',
+65 silly mapToRegistry   rawSpec: '',
+65 silly mapToRegistry   spec: 'latest',
+65 silly mapToRegistry   type: 'tag' }
+66 silly mapToRegistry uri https://registry.npmjs.org/cors
+67 verbose addRemoteTarball https://registry.npmjs.org/cors/-/cors-2.7.1.tgz not in flight; adding
+68 verbose addRemoteTarball [ 'https://registry.npmjs.org/cors/-/cors-2.7.1.tgz',
+68 verbose addRemoteTarball   '3c2e50a58af9ef8c89bee21226b099be1f02739b' ]
+69 info retry fetch attempt 1 at 13:47:13
+70 info attempt registry request try #1 at 13:47:13
+71 http fetch GET https://registry.npmjs.org/cors/-/cors-2.7.1.tgz
+72 http fetch 200 https://registry.npmjs.org/cors/-/cors-2.7.1.tgz
+73 silly fetchAndShaCheck shasum 3c2e50a58af9ef8c89bee21226b099be1f02739b
+74 verbose addTmpTarball C:\Users\CRISTI~1\AppData\Local\Temp\npm-6984-482e888e\registry.npmjs.org\cors\-\cors-2.7.1.tgz not in flight; adding
+75 verbose addTmpTarball already have metadata; skipping unpack for cors@2.7.1
+76 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+77 silly cache afterAdd cors@2.7.1
+78 verbose afterAdd C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\cors\2.7.1\package\package.json not in flight; writing
+79 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+80 verbose afterAdd C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\cors\2.7.1\package\package.json written
+81 silly install resolved [ { name: 'cors',
+81 silly install resolved     version: '2.7.1',
+81 silly install resolved     author:
+81 silly install resolved      { name: 'Troy Goode',
+81 silly install resolved        email: 'troygoode@gmail.com',
+81 silly install resolved        url: 'https://github.com/troygoode/' },
+81 silly install resolved     description: 'middleware for dynamically or statically enabling CORS in express/connect applications',
+81 silly install resolved     keywords: [ 'cors', 'express', 'connect', 'middleware' ],
+81 silly install resolved     homepage: 'https://github.com/expressjs/cors/',
+81 silly install resolved     repository: { type: 'git', url: 'git://github.com/expressjs/cors.git' },
+81 silly install resolved     contributors: [ [Object] ],
+81 silly install resolved     license: 'MIT',
+81 silly install resolved     bugs: { url: 'https://github.com/expressjs/cors/issues' },
+81 silly install resolved     main: './lib/index.js',
+81 silly install resolved     engines: { node: '>=0.10.0' },
+81 silly install resolved     dependencies: { vary: '^1' },
+81 silly install resolved     devDependencies:
+81 silly install resolved      { 'basic-auth-connect': '^1.0.0',
+81 silly install resolved        'body-parser': '^1.12.4',
+81 silly install resolved        eslint: '^0.21.2',
+81 silly install resolved        express: '^4.12.4',
+81 silly install resolved        mocha: '^2.2.5',
+81 silly install resolved        should: '^6.0.3',
+81 silly install resolved        supertest: '^1.0.1' },
+81 silly install resolved     scripts:
+81 silly install resolved      { test: 'npm run lint && ./node_modules/mocha/bin/mocha',
+81 silly install resolved        lint: './node_modules/eslint/bin/eslint.js lib test' },
+81 silly install resolved     gitHead: 'bef1a97c22a3f15cb23ab2d9cf8e7e3f7134e107',
+81 silly install resolved     _id: 'cors@2.7.1',
+81 silly install resolved     _shasum: '3c2e50a58af9ef8c89bee21226b099be1f02739b',
+81 silly install resolved     _from: 'cors@latest',
+81 silly install resolved     _npmVersion: '2.5.1',
+81 silly install resolved     _nodeVersion: '0.12.0',
+81 silly install resolved     _npmUser: { name: 'troygoode', email: 'troygoode@gmail.com' },
+81 silly install resolved     maintainers: [ [Object], [Object] ],
+81 silly install resolved     dist:
+81 silly install resolved      { shasum: '3c2e50a58af9ef8c89bee21226b099be1f02739b',
+81 silly install resolved        tarball: 'https://registry.npmjs.org/cors/-/cors-2.7.1.tgz' },
+81 silly install resolved     directories: {},
+81 silly install resolved     _resolved: 'https://registry.npmjs.org/cors/-/cors-2.7.1.tgz' } ]
+82 info install cors@2.7.1 into D:\Pentalog\react-2016
+83 info installOne cors@2.7.1
+84 verbose installOne of cors to D:\Pentalog\react-2016 not in flight; installing
+85 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\_locks correctMkdir not in flight; initializing
+86 verbose lock using C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\_locks\cors-47391f9f63c903a0.lock for D:\Pentalog\react-2016\node_modules\cors
+87 silly install write writing cors 2.7.1 to D:\Pentalog\react-2016\node_modules\cors
+88 verbose unbuild node_modules\cors
+89 silly gentlyRm D:\Pentalog\react-2016\node_modules\cors is being purged from base D:\Pentalog\react-2016
+90 verbose gentlyRm don't care about contents; nuking D:\Pentalog\react-2016\node_modules\cors
+91 verbose tar unpack C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\cors\2.7.1\package.tgz
+92 verbose tar unpacking to D:\Pentalog\react-2016\node_modules\cors
+93 silly gentlyRm D:\Pentalog\react-2016\node_modules\cors is being purged
+94 verbose gentlyRm don't care about contents; nuking D:\Pentalog\react-2016\node_modules\cors
+95 silly gunzTarPerm modes [ '777', '666' ]
+96 silly gunzTarPerm extractEntry package.json
+97 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+98 silly gunzTarPerm extractEntry .npmignore
+99 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+100 silly gunzTarPerm extractEntry README.md
+101 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+102 silly gunzTarPerm extractEntry LICENSE
+103 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+104 silly gunzTarPerm extractEntry CONTRIBUTING.md
+105 silly gunzTarPerm modified mode [ 'CONTRIBUTING.md', 420, 438 ]
+106 silly gunzTarPerm extractEntry .eslintrc
+107 silly gunzTarPerm modified mode [ '.eslintrc', 420, 438 ]
+108 silly gunzTarPerm extractEntry lib/index.js
+109 silly gunzTarPerm modified mode [ 'lib/index.js', 420, 438 ]
+110 silly gunzTarPerm extractEntry .travis.yml
+111 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+112 silly gunzTarPerm extractEntry test/basic-auth.js
+113 silly gunzTarPerm modified mode [ 'test/basic-auth.js', 420, 438 ]
+114 silly gunzTarPerm extractEntry test/body-events.js
+115 silly gunzTarPerm modified mode [ 'test/body-events.js', 420, 438 ]
+116 silly gunzTarPerm extractEntry test/cors.js
+117 silly gunzTarPerm modified mode [ 'test/cors.js', 420, 438 ]
+118 silly gunzTarPerm extractEntry test/error-response.js
+119 silly gunzTarPerm modified mode [ 'test/error-response.js', 420, 438 ]
+120 silly gunzTarPerm extractEntry test/example-app.js
+121 silly gunzTarPerm modified mode [ 'test/example-app.js', 420, 438 ]
+122 silly gunzTarPerm extractEntry test/issue-2.js
+123 silly gunzTarPerm modified mode [ 'test/issue-2.js', 420, 438 ]
+124 silly gunzTarPerm extractEntry test/issue-31.js
+125 silly gunzTarPerm modified mode [ 'test/issue-31.js', 420, 438 ]
+126 silly gunzTarPerm extractEntry test/mocha.opts
+127 silly gunzTarPerm modified mode [ 'test/mocha.opts', 420, 438 ]
+128 verbose write writing to D:\Pentalog\react-2016\node_modules\cors\package.json
+129 info preinstall cors@2.7.1
+130 verbose readDependencies loading dependencies from D:\Pentalog\react-2016\node_modules\cors\package.json
+131 silly prepareForInstallMany adding vary@^1 from cors dependencies
+132 verbose readDependencies loading dependencies from D:\Pentalog\react-2016\node_modules\cors\package.json
+133 silly cache add args [ 'vary@^1', null ]
+134 verbose cache add spec vary@^1
+135 silly cache add parsed spec Result {
+135 silly cache add   raw: 'vary@^1',
+135 silly cache add   scope: null,
+135 silly cache add   name: 'vary',
+135 silly cache add   rawSpec: '^1',
+135 silly cache add   spec: '>=1.0.0 <2.0.0',
+135 silly cache add   type: 'range' }
+136 silly addNamed vary@>=1.0.0 <2.0.0
+137 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for vary
+138 silly addNameRange { name: 'vary', range: '>=1.0.0 <2.0.0', hasData: false }
+139 silly mapToRegistry name vary
+140 silly mapToRegistry using default registry
+141 silly mapToRegistry registry https://registry.npmjs.org/
+142 silly mapToRegistry data Result {
+142 silly mapToRegistry   raw: 'vary',
+142 silly mapToRegistry   scope: null,
+142 silly mapToRegistry   name: 'vary',
+142 silly mapToRegistry   rawSpec: '',
+142 silly mapToRegistry   spec: 'latest',
+142 silly mapToRegistry   type: 'tag' }
+143 silly mapToRegistry uri https://registry.npmjs.org/vary
+144 verbose addNameRange registry:https://registry.npmjs.org/vary not in flight; fetching
+145 verbose request uri https://registry.npmjs.org/vary
+146 verbose request no auth needed
+147 info attempt registry request try #1 at 13:47:13
+148 http request GET https://registry.npmjs.org/vary
+149 http 200 https://registry.npmjs.org/vary
+150 verbose headers { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+150 verbose headers   etag: '"79GC2AZSINZ5HSNCG6Q4N5AOM"',
+150 verbose headers   'content-type': 'application/json',
+150 verbose headers   'content-encoding': 'gzip',
+150 verbose headers   'cache-control': 'max-age=300',
+150 verbose headers   'content-length': '2578',
+150 verbose headers   'accept-ranges': 'bytes',
+150 verbose headers   date: 'Wed, 03 Aug 2016 10:47:14 GMT',
+150 verbose headers   via: '1.1 varnish',
+150 verbose headers   age: '106',
+150 verbose headers   connection: 'keep-alive',
+150 verbose headers   'x-served-by': 'cache-lhr6321-LHR',
+150 verbose headers   'x-cache': 'HIT',
+150 verbose headers   'x-cache-hits': '4',
+150 verbose headers   'x-timer': 'S1470221234.684213,VS0,VE0',
+150 verbose headers   vary: 'Accept-Encoding' }
+151 silly get cb [ 200,
+151 silly get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+151 silly get     etag: '"79GC2AZSINZ5HSNCG6Q4N5AOM"',
+151 silly get     'content-type': 'application/json',
+151 silly get     'content-encoding': 'gzip',
+151 silly get     'cache-control': 'max-age=300',
+151 silly get     'content-length': '2578',
+151 silly get     'accept-ranges': 'bytes',
+151 silly get     date: 'Wed, 03 Aug 2016 10:47:14 GMT',
+151 silly get     via: '1.1 varnish',
+151 silly get     age: '106',
+151 silly get     connection: 'keep-alive',
+151 silly get     'x-served-by': 'cache-lhr6321-LHR',
+151 silly get     'x-cache': 'HIT',
+151 silly get     'x-cache-hits': '4',
+151 silly get     'x-timer': 'S1470221234.684213,VS0,VE0',
+151 silly get     vary: 'Accept-Encoding' } ]
+152 verbose get saving vary to C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\registry.npmjs.org\vary\.cache.json
+153 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+154 silly addNameRange number 2 { name: 'vary', range: '>=1.0.0 <2.0.0', hasData: true }
+155 silly addNameRange versions [ 'vary', [ '0.0.0', '0.1.0', '1.0.0', '1.0.1', '1.1.0' ] ]
+156 silly addNamed vary@1.1.0
+157 verbose addNamed "1.1.0" is a plain semver version for vary
+158 silly mapToRegistry name vary
+159 silly mapToRegistry using default registry
+160 silly mapToRegistry registry https://registry.npmjs.org/
+161 silly mapToRegistry data Result {
+161 silly mapToRegistry   raw: 'vary',
+161 silly mapToRegistry   scope: null,
+161 silly mapToRegistry   name: 'vary',
+161 silly mapToRegistry   rawSpec: '',
+161 silly mapToRegistry   spec: 'latest',
+161 silly mapToRegistry   type: 'tag' }
+162 silly mapToRegistry uri https://registry.npmjs.org/vary
+163 verbose addRemoteTarball https://registry.npmjs.org/vary/-/vary-1.1.0.tgz not in flight; adding
+164 verbose addRemoteTarball [ 'https://registry.npmjs.org/vary/-/vary-1.1.0.tgz',
+164 verbose addRemoteTarball   'e1e5affbbd16ae768dd2674394b9ad3022653140' ]
+165 info retry fetch attempt 1 at 13:47:13
+166 info attempt registry request try #1 at 13:47:13
+167 http fetch GET https://registry.npmjs.org/vary/-/vary-1.1.0.tgz
+168 http fetch 200 https://registry.npmjs.org/vary/-/vary-1.1.0.tgz
+169 silly fetchAndShaCheck shasum e1e5affbbd16ae768dd2674394b9ad3022653140
+170 verbose addTmpTarball C:\Users\CRISTI~1\AppData\Local\Temp\npm-6984-482e888e\registry.npmjs.org\vary\-\vary-1.1.0.tgz not in flight; adding
+171 verbose addTmpTarball already have metadata; skipping unpack for vary@1.1.0
+172 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+173 silly cache afterAdd vary@1.1.0
+174 verbose afterAdd C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\vary\1.1.0\package\package.json not in flight; writing
+175 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+176 verbose afterAdd C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\vary\1.1.0\package\package.json written
+177 silly install resolved [ { name: 'vary',
+177 silly install resolved     description: 'Manipulate the HTTP Vary header',
+177 silly install resolved     version: '1.1.0',
+177 silly install resolved     author:
+177 silly install resolved      { name: 'Douglas Christopher Wilson',
+177 silly install resolved        email: 'doug@somethingdoug.com' },
+177 silly install resolved     license: 'MIT',
+177 silly install resolved     keywords: [ 'http', 'res', 'vary' ],
+177 silly install resolved     repository: { type: 'git', url: 'https://github.com/jshttp/vary' },
+177 silly install resolved     devDependencies: { istanbul: '0.3.21', mocha: '2.3.3', supertest: '1.1.0' },
+177 silly install resolved     files: [ 'HISTORY.md', 'LICENSE', 'README.md', 'index.js' ],
+177 silly install resolved     engines: { node: '>= 0.8' },
+177 silly install resolved     scripts:
+177 silly install resolved      { test: 'mocha --reporter spec --bail --check-leaks test/',
+177 silly install resolved        'test-cov': 'istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/',
+177 silly install resolved        'test-travis': 'istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/' },
+177 silly install resolved     gitHead: '13b03e9bf97da9d83bfeac84d84144137d84c257',
+177 silly install resolved     bugs: { url: 'https://github.com/jshttp/vary/issues' },
+177 silly install resolved     homepage: 'https://github.com/jshttp/vary',
+177 silly install resolved     _id: 'vary@1.1.0',
+177 silly install resolved     _shasum: 'e1e5affbbd16ae768dd2674394b9ad3022653140',
+177 silly install resolved     _from: 'vary@>=1.0.0 <2.0.0',
+177 silly install resolved     _npmVersion: '1.4.28',
+177 silly install resolved     _npmUser: { name: 'dougwilson', email: 'doug@somethingdoug.com' },
+177 silly install resolved     maintainers: [ [Object], [Object], [Object] ],
+177 silly install resolved     dist:
+177 silly install resolved      { shasum: 'e1e5affbbd16ae768dd2674394b9ad3022653140',
+177 silly install resolved        tarball: 'https://registry.npmjs.org/vary/-/vary-1.1.0.tgz' },
+177 silly install resolved     directories: {},
+177 silly install resolved     _resolved: 'https://registry.npmjs.org/vary/-/vary-1.1.0.tgz' } ]
+178 info install vary@1.1.0 into D:\Pentalog\react-2016\node_modules\cors
+179 info installOne vary@1.1.0
+180 verbose installOne of vary to D:\Pentalog\react-2016\node_modules\cors not in flight; installing
+181 verbose correctMkdir C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\_locks correctMkdir not in flight; initializing
+182 verbose lock using C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\_locks\vary-4115cd7e6308bbaf.lock for D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+183 silly install write writing vary 1.1.0 to D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+184 verbose unbuild node_modules\cors\node_modules\vary
+185 silly gentlyRm D:\Pentalog\react-2016\node_modules\cors\node_modules\vary is being purged from base D:\Pentalog\react-2016
+186 verbose gentlyRm don't care about contents; nuking D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+187 verbose tar unpack C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\vary\1.1.0\package.tgz
+188 verbose tar unpacking to D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+189 silly gentlyRm D:\Pentalog\react-2016\node_modules\cors\node_modules\vary is being purged
+190 verbose gentlyRm don't care about contents; nuking D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+191 silly gunzTarPerm modes [ '777', '666' ]
+192 silly gunzTarPerm extractEntry package.json
+193 silly gunzTarPerm extractEntry README.md
+194 silly gunzTarPerm extractEntry LICENSE
+195 silly gunzTarPerm extractEntry index.js
+196 silly gunzTarPerm extractEntry HISTORY.md
+197 verbose write writing to D:\Pentalog\react-2016\node_modules\cors\node_modules\vary\package.json
+198 info preinstall vary@1.1.0
+199 verbose readDependencies loading dependencies from D:\Pentalog\react-2016\node_modules\cors\node_modules\vary\package.json
+200 verbose readDependencies loading dependencies from D:\Pentalog\react-2016\node_modules\cors\node_modules\vary\package.json
+201 silly install resolved []
+202 verbose about to build D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+203 info build D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+204 info linkStuff vary@1.1.0
+205 silly linkStuff vary@1.1.0 has D:\Pentalog\react-2016\node_modules\cors\node_modules as its parent node_modules
+206 verbose linkBins vary@1.1.0
+207 verbose linkMans vary@1.1.0
+208 verbose rebuildBundles vary@1.1.0
+209 info install vary@1.1.0
+210 info postinstall vary@1.1.0
+211 verbose unlock done using C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\_locks\vary-4115cd7e6308bbaf.lock for D:\Pentalog\react-2016\node_modules\cors\node_modules\vary
+212 verbose about to build D:\Pentalog\react-2016\node_modules\cors
+213 info build D:\Pentalog\react-2016\node_modules\cors
+214 info linkStuff cors@2.7.1
+215 silly linkStuff cors@2.7.1 has D:\Pentalog\react-2016\node_modules as its parent node_modules
+216 verbose linkBins cors@2.7.1
+217 verbose linkMans cors@2.7.1
+218 verbose rebuildBundles cors@2.7.1
+219 verbose rebuildBundles [ 'vary' ]
+220 info install cors@2.7.1
+221 info postinstall cors@2.7.1
+222 verbose unlock done using C:\Users\Cristian Palcau\AppData\Roaming\npm-cache\_locks\cors-47391f9f63c903a0.lock for D:\Pentalog\react-2016\node_modules\cors
+223 verbose validateInstall loading D:\Pentalog\react-2016\package.json for validation
+224 verbose stack Error: The package react@0.13.3 does not satisfy its siblings' peerDependencies requirements!
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install.js:125:32
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\install.js:268:7
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:142:5
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:263:14
+224 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:263:14
+224 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:263:14
+224 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+224 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:263:14
+225 verbose cwd D:\Pentalog\react-2016
+226 error Windows_NT 10.0.10586
+227 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "cors"
+228 error node v4.4.7
+229 error npm  v2.15.8
+230 error code EPEERINVALID
+231 error peerinvalid The package react@0.13.3 does not satisfy its siblings' peerDependencies requirements!
+231 error peerinvalid Peer react-router@0.13.3 wants react@0.13.x
+231 error peerinvalid Peer react-dom@15.0.2 wants react@^15.0.2
+231 error peerinvalid Peer react-photo-gallery@4.2.11 wants react@~15.0.1
+232 verbose exit [ 1, true ]

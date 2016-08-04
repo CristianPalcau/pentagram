@@ -49,10 +49,9 @@ var loginForm = React.createClass({
                     <div className="containerlogin">
                         <form>
                             <fieldset>
-                                <div className="col-md-6 col-md-offset-3 loginpage">
                                     <img src={'images/telefon_login.png'} alt="login_telefon"
-                                         className="img-responsive loginimage formimage_display"/>
-                                    <div className="logintable col-md-6">
+                                         className="loginimage formimage_display"/>
+                                    <div className="logintable">
                                         <div className="jumbotron jumbologin">
                                             <img src={'images/logo.png'} alt="logo"
                                                  className="img-responsive formimage"/>
@@ -64,7 +63,6 @@ var loginForm = React.createClass({
                                         </div>
                                         <div className="jumbotron jumbologin">
                                             <h4>Don't have an account? <Link to="register">Sign up</Link></h4></div>
-                                    </div>
                                 </div>
                             </fieldset>
                         </form>
