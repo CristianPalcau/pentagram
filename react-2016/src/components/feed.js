@@ -7,6 +7,80 @@ var Router = require('react-router');
 var Link = Router.Link;
 var Header = require('./common/Header');
 
+var PhotoUser = React.createClass({
+    getInitialState: function () {
+        return {};
+
+    }
+    , componentWillMount: function () {
+        var self = this;
+        var userid = self.props.userID;
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/v1/users/'
+            , type: 'GET'
+            , error: function (xhr, errorThrown) {
+
+            }
+        }).then(function (data) {
+            for (var key in data) {
+                var item = data[key];
+                if (item.id === userid) {
+                    self.setState({userName: item.username});
+                }
+            }
+        });
+    }
+
+    , render: function () {
+        var self = this;
+        return (
+            <a className="utilizator" title={self.state.userName}
+               href={"#/" + self.state.userName}>{self.state.userName}</a>
+        );
+    }
+
+});
+
+
+var CommentBlock = React.createClass({
+    getInitialState: function () {
+        return {};
+
+    }
+    , componentWillMount: function () {
+        var self = this;
+        var userid = self.props.userID;
+        var comment = self.props.commentTEXT;
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/v1/users/'
+            , type: 'GET'
+            , error: function (xhr, errorThrown) {
+
+            }
+        }).then(function (data) {
+            for (var key in data) {
+                var item = data[key];
+                if (item.id === userid) {
+                    self.setState({userName: item.username});
+                    self.setState({commentItem: comment});
+                    // console.log(self.state.commentItem);
+                }
+            }
+        });
+    }
+
+    , render: function () {
+        var self = this;
+        return (
+            <li className="comments"><h1><a className="user_comment notranslate"
+                                            title={self.state.userName}>{self.state.userName}</a>
+                <span>{self.state.commentItem}</span>
+            </h1></li>
+        );
+    }
+
+});
+
 var feed = React.createClass({
     getInitialState: function () {
         return {
@@ -15,6 +89,7 @@ var feed = React.createClass({
         };
 
     }
+
     , componentWillMount: function () {
         var self = this;
         $.ajax({
@@ -47,7 +122,7 @@ var feed = React.createClass({
 
     }
 
-    , likebutton: function(event) {
+    , likebutton: function (event) {
         $('.like').click(function () {
             var obj = $(this);
             if (obj.data('liked')) {
@@ -100,16 +175,16 @@ var feed = React.createClass({
         });
     }
 
-    , componentDidMount: function(){
+    , componentDidMount: function () {
     },
-    add: function(event){
+    add: function (event) {
         if (event.keyCode === 13) {
             {
-                this.showComments();
+                this.onCommentSubmitHandler();
             }
 
         }
-     }
+    }
     , render: function () {
         var self = this;
         var likeHandle = this.onLikeHandler;
@@ -128,7 +203,7 @@ var feed = React.createClass({
                             <div className="containerpost col-md-6 image-frame" key={item.id}>
                                 <header className="headpost">
                                     <div className="utilizatorfeed">
-                                        <a className="utilizator" title="utilizator" href="#/utilizator/">Utilizator</a>
+                                        <PhotoUser userID={item.user}/>
                                     </div>
                                 </header>
                                 <a href={'#/photo/' + item.id}>
@@ -141,24 +216,32 @@ var feed = React.createClass({
                                             <span>{item[2]} 491 </span>likes</span>
                                     </section>
                                     <ul className="container-comments">
-                                        <li className="comments"><h1><a className="user_comment notranslate" title="cristian" href="/cristian/">cristian</a><span>Descriere. Testare. Coming soon...</span>
-                                        <li class="comments" ><button onClick={self.showComments} data-id={item.id}>Show comments</button></li>
-                                        </h1></li>
+                                        <li className="comments">
+                                            <h1><a className="user_comment notranslate" title="cristian"
+                                                   href="/cristian/">cristian</a><span>Descriere. Testare. Coming soon...</span>
+                                                <li class="comments">
+                                                    <button onClick={self.showComments} data-id={item.id}>Show
+                                                        comments
+                                                    </button>
+                                                </li>
+                                            </h1>
+                                        </li>
                                         {self.state.comments.map(function (commItem) {
-                                                        return (
-
-                                                            <li className="comments"><h1><a className="user_comment notranslate" title = {commItem.user}>{commItem.user}</a>
-                                                                <span>{commItem.comment}</span>
-                                                            </h1></li>
-                                                        );
+                                            return (
+                                                <CommentBlock userID={commItem.user} commentTEXT={commItem.comment}/>
+                                            );
                                         })}
                                     </ul>
-                                        <section className="comments-post">
-                                            <a className="like" role="button" aria-disabled="false"><span className="likes coreSpriteHeartOpen" onClick={self.likebutton}>Like</span></a>
-                                            <form className="add-comment">
-                                                <input type="text" className="comment-input" aria-label="Add a comment…" placeholder="Add a comment…" data-id={item.id} inputChangeHandler={commentHandle} onKeyDown={self.add}></input>
-                                            </form>
-                                        </section>
+                                    <section className="comments-post">
+                                        <a className="like" role="button" aria-disabled="false"><span
+                                            className="likes coreSpriteHeartOpen" onClick={self.likebutton}>Like</span></a>
+                                        <form className="add-comment">
+                                            <input type="text" className="comment-input" aria-label="Add a comment…"
+                                                   placeholder="Add a comment…" name="comment"
+                                                   onChange={self.onCommentHandler} data-id={item.id}
+                                                   onKeyDown={self.add}></input>
+                                        </form>
+                                    </section>
                                 </div>
                             </div>
                         );
@@ -168,4 +251,4 @@ var feed = React.createClass({
         );
     }
 });
-module.exports = feed;
+module.exports = feed, CommentBlock;

@@ -32128,6 +32128,80 @@ var Router = require('react-router');
 var Link = Router.Link;
 var Header = require('./common/Header');
 
+var PhotoUser = React.createClass({displayName: "PhotoUser",
+    getInitialState: function () {
+        return {};
+
+    }
+    , componentWillMount: function () {
+        var self = this;
+        var userid = self.props.userID;
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/v1/users/'
+            , type: 'GET'
+            , error: function (xhr, errorThrown) {
+
+            }
+        }).then(function (data) {
+            for (var key in data) {
+                var item = data[key];
+                if (item.id === userid) {
+                    self.setState({userName: item.username});
+                }
+            }
+        });
+    }
+
+    , render: function () {
+        var self = this;
+        return (
+            React.createElement("a", {className: "utilizator", title: self.state.userName, 
+               href: "#/" + self.state.userName}, self.state.userName)
+        );
+    }
+
+});
+
+
+var CommentBlock = React.createClass({displayName: "CommentBlock",
+    getInitialState: function () {
+        return {};
+
+    }
+    , componentWillMount: function () {
+        var self = this;
+        var userid = self.props.userID;
+        var comment = self.props.commentTEXT;
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/v1/users/'
+            , type: 'GET'
+            , error: function (xhr, errorThrown) {
+
+            }
+        }).then(function (data) {
+            for (var key in data) {
+                var item = data[key];
+                if (item.id === userid) {
+                    self.setState({userName: item.username});
+                    self.setState({commentItem: comment});
+                    // console.log(self.state.commentItem);
+                }
+            }
+        });
+    }
+
+    , render: function () {
+        var self = this;
+        return (
+            React.createElement("li", {className: "comments"}, React.createElement("h1", null, React.createElement("a", {className: "user_comment notranslate", 
+                                            title: self.state.userName}, self.state.userName), 
+                React.createElement("span", null, self.state.commentItem)
+            ))
+        );
+    }
+
+});
+
 var feed = React.createClass({displayName: "feed",
     getInitialState: function () {
         return {
@@ -32136,6 +32210,7 @@ var feed = React.createClass({displayName: "feed",
         };
 
     }
+
     , componentWillMount: function () {
         var self = this;
         $.ajax({
@@ -32168,7 +32243,7 @@ var feed = React.createClass({displayName: "feed",
 
     }
 
-    , likebutton: function(event) {
+    , likebutton: function (event) {
         $('.like').click(function () {
             var obj = $(this);
             if (obj.data('liked')) {
@@ -32221,16 +32296,16 @@ var feed = React.createClass({displayName: "feed",
         });
     }
 
-    , componentDidMount: function(){
+    , componentDidMount: function () {
     },
-    add: function(event){
+    add: function (event) {
         if (event.keyCode === 13) {
             {
-                this.showComments();
+                this.onCommentSubmitHandler();
             }
 
         }
-     }
+    }
     , render: function () {
         var self = this;
         var likeHandle = this.onLikeHandler;
@@ -32249,7 +32324,7 @@ var feed = React.createClass({displayName: "feed",
                             React.createElement("div", {className: "containerpost col-md-6 image-frame", key: item.id}, 
                                 React.createElement("header", {className: "headpost"}, 
                                     React.createElement("div", {className: "utilizatorfeed"}, 
-                                        React.createElement("a", {className: "utilizator", title: "utilizator", href: "#/utilizator/"}, "Utilizator")
+                                        React.createElement(PhotoUser, {userID: item.user})
                                     )
                                 ), 
                                 React.createElement("a", {href: '#/photo/' + item.id}, 
@@ -32262,24 +32337,32 @@ var feed = React.createClass({displayName: "feed",
                                             React.createElement("span", null, item[2], " 491 "), "likes")
                                     ), 
                                     React.createElement("ul", {className: "container-comments"}, 
-                                        React.createElement("li", {className: "comments"}, React.createElement("h1", null, React.createElement("a", {className: "user_comment notranslate", title: "cristian", href: "/cristian/"}, "cristian"), React.createElement("span", null, "Descriere. Testare. Coming soon..."), 
-                                        React.createElement("li", {class: "comments"}, React.createElement("button", {onClick: self.showComments, "data-id": item.id}, "Show comments"))
-                                        )), 
+                                        React.createElement("li", {className: "comments"}, 
+                                            React.createElement("h1", null, React.createElement("a", {className: "user_comment notranslate", title: "cristian", 
+                                                   href: "/cristian/"}, "cristian"), React.createElement("span", null, "Descriere. Testare. Coming soon..."), 
+                                                React.createElement("li", {class: "comments"}, 
+                                                    React.createElement("button", {onClick: self.showComments, "data-id": item.id}, "Show" + ' ' +
+                                                        "comments"
+                                                    )
+                                                )
+                                            )
+                                        ), 
                                         self.state.comments.map(function (commItem) {
-                                                        return (
-
-                                                            React.createElement("li", {className: "comments"}, React.createElement("h1", null, React.createElement("a", {className: "user_comment notranslate", title: commItem.user}, commItem.user), 
-                                                                React.createElement("span", null, commItem.comment)
-                                                            ))
-                                                        );
+                                            return (
+                                                React.createElement(CommentBlock, {userID: commItem.user, commentTEXT: commItem.comment})
+                                            );
                                         })
                                     ), 
-                                        React.createElement("section", {className: "comments-post"}, 
-                                            React.createElement("a", {className: "like", role: "button", "aria-disabled": "false"}, React.createElement("span", {className: "likes coreSpriteHeartOpen", onClick: self.likebutton}, "Like")), 
-                                            React.createElement("form", {className: "add-comment"}, 
-                                                React.createElement("input", {type: "text", className: "comment-input", "aria-label": "Add a comment…", placeholder: "Add a comment…", "data-id": item.id, inputChangeHandler: commentHandle, onKeyDown: self.add})
-                                            )
+                                    React.createElement("section", {className: "comments-post"}, 
+                                        React.createElement("a", {className: "like", role: "button", "aria-disabled": "false"}, React.createElement("span", {
+                                            className: "likes coreSpriteHeartOpen", onClick: self.likebutton}, "Like")), 
+                                        React.createElement("form", {className: "add-comment"}, 
+                                            React.createElement("input", {type: "text", className: "comment-input", "aria-label": "Add a comment…", 
+                                                   placeholder: "Add a comment…", name: "comment", 
+                                                   onChange: self.onCommentHandler, "data-id": item.id, 
+                                                   onKeyDown: self.add})
                                         )
+                                    )
                                 )
                             )
                         );
@@ -32289,7 +32372,7 @@ var feed = React.createClass({displayName: "feed",
         );
     }
 });
-module.exports = feed;
+module.exports = feed, CommentBlock;
 
 },{"./common/Header":199,"react":196,"react-router":27}],203:[function(require,module,exports){
 /**
